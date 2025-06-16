@@ -1,6 +1,12 @@
 export default class GameState {
+  constructor() {
+    this.currentPlayer = 'user';
+    this.selectedCharacter = null;
+    this.selectedCellIndex = null;
+  }
+
   static from(object) {
-    // TODO: create object
-    return null;
+    const state = new GameState();
+    return Object.assign(state, object);
   }
 }
