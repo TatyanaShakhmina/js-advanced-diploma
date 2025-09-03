@@ -203,7 +203,7 @@ export default class GamePlay {
   hideCellTooltip(index) {
     this.cells[index].title = '';
   }
-  
+
   showDamage(index, damage) {
     return new Promise((resolve) => {
       const cell = this.cells[index];
@@ -212,10 +212,15 @@ export default class GamePlay {
       damageEl.classList.add('damage');
       cell.appendChild(damageEl);
 
-      damageEl.addEventListener('animationend', () => {
-        cell.removeChild(damageEl);
+      const onEnd = () => {
+        if (damageEl.parentNode) {
+          damageEl.parentNode.removeChild(damageEl);
+        }
+        damageEl.removeEventListener('animationend', onEnd);
         resolve();
-      });
+      };
+
+      damageEl.addEventListener('animationend', onEnd, { once: true });
     });
   }
 

@@ -26,4 +26,16 @@ export default class Character {
     this.attackRange = 0;
     this.moveRange = 0;
   }
+
+  levelUp() {
+    const life = this.health;
+
+    this.attack = Math.max(this.attack, Math.round(this.attack * (80 + life) / 100));
+    this.defence = Math.max(this.defence, Math.round(this.defence * (80 + life) / 100));
+
+    this.level += 1;
+    
+    this.health = Math.min(100, this.health + 80);
+  }
+
 }

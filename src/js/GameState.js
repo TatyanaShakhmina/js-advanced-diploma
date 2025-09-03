@@ -3,6 +3,9 @@ export default class GameState {
     this.currentPlayer = 'user';
     this.selectedCharacter = null;
     this.selectedCellIndex = null;
+    this.score = 0;
+    this.maxScore = 0;
+    this.boardLocked = false;
   }
 
   static from(object) {
